@@ -1,0 +1,20 @@
+DNN architecture:
+QNetwork(
+  (hidden_layers): ModuleList(
+    (0): Linear(in_features=37, out_features=32, bias=True)
+    (1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (output): Linear(in_features=16, out_features=4, bias=True)
+)
+
+Training hyperparams:
+eps_start: 1.0, eps_end: 0.01, eps_decay: 0.97
+BUFFER_SIZE: 100000
+BATCH_SIZE: 64
+GAMMA: 0.99
+TAU: 0.005
+LR: 0.0005
+UPDATE_EVERY: 4
+
+Training history:Episode 100	Average Score: 4.88	Time elapsed: 4:35Episode 200	Average Score: 12.21	Time elapsed: 9:11
+Environment solved in 170 episodes!	Average Score: 13.12	Time elapsed: 12:31s
