@@ -3,7 +3,7 @@ import copy
 import random
 from collections import namedtuple, deque
 
-from model import *
+from ddpg_model import *
 
 import torch
 import torch.nn.functional as F
@@ -44,7 +44,7 @@ class Agent:
         self.actor_optimizer = optim.Adam(self.actor_local.parameters(), lr=LR_ACTOR)
 
         # Critic Network
-        critic_hidden_layers = [128, 256]
+        critic_hidden_layers = [128, 128]
         self.critic_local = Critic(state_size, action_size, seed, critic_hidden_layers).to(device)
         self.critic_target = Critic(state_size, action_size, seed, critic_hidden_layers).to(device)
         self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC)
@@ -125,7 +125,7 @@ class Agent:
         self.actor_optimizer.zero_grad()
         actor_loss.backward()
         # Gradient clipping
-        # torch.nn.utils.clip_grad_norm_(self.actor_local.parameters(), 1)
+        torch.nn.utils.clip_grad_norm_(self.actor_local.parameters(), 1)
         self.actor_optimizer.step()
         
         # ------------------- update target networks ------------------- #

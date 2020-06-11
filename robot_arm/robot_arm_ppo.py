@@ -97,8 +97,6 @@ def ppo(res_path, n_episodes=2000, print_every=10):
             f.write(msg)
             f.flush()
             torch.save(agent.network.state_dict(), res_path + "cp.pth")
-            torch.save(agent.network.actor_body.state_dict(), res_path + "actor_cp.pth")
-            torch.save(agent.network.critic_body.state_dict(), res_path + "critic_cp.pth")
         if np.mean(scores_window) >= 30.0:
             msg = '\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}\tTime elapsed: {}s'.\
                 format(i_episode - window_size, average_score, time_elapsed)
@@ -129,8 +127,6 @@ else:
     plot_scores = ppo(res_path)
 
     torch.save(agent.network.state_dict(), res_path + "cp.pth")
-    torch.save(agent.network.actor_body.state_dict(), res_path + "actor_cp.pth")
-    torch.save(agent.network.critic_body.state_dict(), res_path + "critic_cp.pth")
 
     # plot the scores
     fig = plt.figure()

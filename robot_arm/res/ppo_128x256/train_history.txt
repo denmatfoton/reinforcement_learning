@@ -1,0 +1,33 @@
+DNN architecture:
+GaussianActorCriticNet(
+  (phi_body): DummyBody()
+  (actor_body): FCBody(
+    (layers): ModuleList(
+      (0): Linear(in_features=33, out_features=128, bias=True)
+      (1): Linear(in_features=128, out_features=256, bias=True)
+    )
+  )
+  (critic_body): FCBody(
+    (layers): ModuleList(
+      (0): Linear(in_features=33, out_features=128, bias=True)
+      (1): Linear(in_features=128, out_features=256, bias=True)
+    )
+  )
+  (fc_action): Linear(in_features=256, out_features=4, bias=True)
+  (fc_critic): Linear(in_features=256, out_features=1, bias=True)
+)
+
+Training hyperparams:
+lr_actor: 0.0003
+lr_critic: 0.001
+rollout_length: 128
+optimization_epochs: 20
+mini_batch_size: 64
+discount: 0.95
+gae_tau: 0.95
+entropy_weight: 0.0
+target_kl: 0.01
+ppo_ratio_clip: 0.2
+
+
+Training history:Episode 10	Average Score: 0.37	Time elapsed: 17:12Episode 20	Average Score: 0.51	Time elapsed: 34:22Episode 30	Average Score: 0.61	Time elapsed: 51:37Episode 40	Average Score: 0.65	Time elapsed: 69:01Episode 50	Average Score: 0.68	Time elapsed: 86:46Episode 60	Average Score: 0.68	Time elapsed: 104:13

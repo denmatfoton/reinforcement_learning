@@ -109,7 +109,7 @@ def ddpg(res_path, n_episodes=2000, max_t=300, print_every=10):
         plt_f.flush()
 
         if i_episode % print_every == 0:
-            msg = '\rEpisode {}\tAverage Score: {:.2f}\tTime elapsed: {}'.\
+            msg = '\rEpisode {}.\tAverage Score: {:.2f}.\tTime elapsed: {}.'.\
                 format(i_episode, np.mean(scores_window), time_elapsed)
             print(msg)
             f.write(msg)
@@ -117,7 +117,7 @@ def ddpg(res_path, n_episodes=2000, max_t=300, print_every=10):
             torch.save(agent.actor_local.state_dict(), res_path + "actor_cp.pth")
             torch.save(agent.critic_local.state_dict(), res_path + "critic_cp.pth")
         if np.mean(scores_window) >= 30.0:
-            msg = '\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}\tTime elapsed: {}s'.\
+            msg = '\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}.\tTime elapsed: {}'.\
                 format(i_episode - window_size, average_score, time_elapsed)
             print(msg)
             f.write(msg)

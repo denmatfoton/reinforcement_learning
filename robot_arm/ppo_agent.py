@@ -34,19 +34,19 @@ class Agent:
 
         # Actor Network
         self.network = GaussianActorCriticNet(state_size, action_size,
-                                              actor_body=FCBody(state_size, hidden_units=(256, 256), gate=torch.tanh),
-                                              critic_body=FCBody(state_size, hidden_units=(256, 256), gate=torch.tanh))
+                                              actor_body=FCBody(state_size, hidden_units=(128, 256), gate=torch.tanh),
+                                              critic_body=FCBody(state_size, hidden_units=(128, 256), gate=torch.tanh))
         self.actor_optimizer = optim.Adam(self.network.actor_params, lr=LR_ACTOR)
         self.critic_optimizer = optim.Adam(self.network.critic_params, lr=LR_CRITIC)
         self.state_normalizer = MeanStdNormalizer()
 
         self.rollout_length = 128
-        self.discount = 0.99
+        self.discount = 0.95
         self.gae_tau = 0.95
         self.optimization_epochs = 20
         self.mini_batch_size = 64
-        self.entropy_weight = 0.
-        self.target_kl = 0.01
+        self.entropy_weight = 0.01
+        self.target_kl = 0.1
         self.ppo_ratio_clip = 0.2
 
     def get_hyper_params(self):

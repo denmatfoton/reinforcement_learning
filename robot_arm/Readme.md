@@ -21,20 +21,17 @@ For this project two separate versions of the Unity environment were provided:
 - The first version contains a single agent.
 - The second version contains 20 identical agents, each with its own copy of the environment.
 
-###Solving the Environment
-
-####Solving the First Version
+### Solving the First Version
 
 The task is episodic, and in order to solve the environment, your agent must get an average score
 of +30 over 100 consecutive episodes.
 
-####Solving the Second Version
+### Solving the Second Version
 
 The barrier for solving the second version of the environment is slightly different, to take into
-account the presence of many agents. In particular, your agents must get an average score
-of +30 (over 100 consecutive episodes, and over all agents). Specifically,
-
-After each episode, we add up the rewards that each agent received (without discounting), to get a score for each agent. This yields 20 (potentially different) scores. We then take the average of these 20 scores.
+account the presence of many agents. In particular, the agents must get an average score
+of +30 (over 100 consecutive episodes, and over all agents). Specifically, after each episode,
+we add up the rewards that each agent received (without discounting), to get a score for each agent. This yields 20 (potentially different) scores. We then take the average of these 20 scores.
 This yields an average score for each episode (where the average is over all 20 agents).
 
 ## Getting started
@@ -55,14 +52,14 @@ The repository already contains a prebuilt environment for Windows (64-bit).
 
 If you have another OS, download the environment from one of the links below and replace:
 
-####Version 1: One (1) Agent
+#### One Agent
 
  - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Linux.zip)
  - Max OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher.app.zip)
  - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86.zip)
  - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86_64.zip) 
  
-####Version 2: Twenty (20) Agents
+#### Twenty Agents
 
  - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip)
  - Max OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher.app.zip)

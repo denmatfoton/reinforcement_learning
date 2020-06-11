@@ -1,0 +1,34 @@
+DNN architecture, actor network:
+Actor(
+  (hidden_layers): ModuleList(
+    (0): Linear(in_features=33, out_features=128, bias=True)
+    (1): Linear(in_features=128, out_features=128, bias=True)
+  )
+  (batch_norm): ModuleList(
+    (0): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (output): Linear(in_features=128, out_features=4, bias=True)
+)DNN architecture, critic network:
+Critic(
+  (batch_norm): ModuleList(
+    (0): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (hidden_layers): ModuleList(
+    (0): Linear(in_features=33, out_features=128, bias=True)
+    (1): Linear(in_features=132, out_features=128, bias=True)
+  )
+  (output): Linear(in_features=128, out_features=4, bias=True)
+)
+
+Training hyperparams:
+BUFFER_SIZE: 1000000
+BATCH_SIZE: 128
+GAMMA: 0.95
+TAU: 0.001
+LR_ACTOR: 0.0001
+LR_CRITIC: 0.001
+
+Training history:Episode 10	Average Score: 0.48	Time elapsed: 2:00Episode 20	Average Score: 0.95	Time elapsed: 4:26Episode 30	Average Score: 1.47	Time elapsed: 7:16Episode 40	Average Score: 2.20	Time elapsed: 10:27Episode 50	Average Score: 3.02	Time elapsed: 13:59Episode 60	Average Score: 4.29	Time elapsed: 17:43Episode 70	Average Score: 5.77	Time elapsed: 21:24Episode 80	Average Score: 7.87	Time elapsed: 25:11Episode 90	Average Score: 9.93	Time elapsed: 29:02Episode 100	Average Score: 12.19	Time elapsed: 33:03Episode 110	Average Score: 15.77	Time elapsed: 37:09Episode 120	Average Score: 19.19	Time elapsed: 41:21Episode 130	Average Score: 22.43	Time elapsed: 45:05Episode 140	Average Score: 25.19	Time elapsed: 48:39Episode 150	Average Score: 27.81	Time elapsed: 52:17Episode 160	Average Score: 29.93	Time elapsed: 56:03
+Environment solved in 61 episodes!	Average Score: 30.14	Time elapsed: 56:25s
