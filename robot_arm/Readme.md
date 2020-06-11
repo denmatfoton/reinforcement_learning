@@ -24,10 +24,12 @@ For this project two separate versions of the Unity environment were provided:
 ###Solving the Environment
 
 ####Solving the First Version
+
 The task is episodic, and in order to solve the environment, your agent must get an average score
 of +30 over 100 consecutive episodes.
 
 ####Solving the Second Version
+
 The barrier for solving the second version of the environment is slightly different, to take into
 account the presence of many agents. In particular, your agents must get an average score
 of +30 (over 100 consecutive episodes, and over all agents). Specifically,
@@ -36,9 +38,11 @@ After each episode, we add up the rewards that each agent received (without disc
 This yields an average score for each episode (where the average is over all 20 agents).
 
 ## Getting started
+
 Download the whole repository.
 
 ### Packages
+
 You should have installed Python 3.8 as well. Create new python virtual environment. Install required python packages in this virtual environment:
 1. Pytorch (1.5.0)
 2. numpy
@@ -46,32 +50,42 @@ You should have installed Python 3.8 as well. Create new python virtual environm
 From the root of this repo run `pip -q install ./python`. This will install packages required for connection with the environment.
 
 ### Unity Environment
+
 The repository already contains a prebuilt environment for Windows (64-bit).
 
 If you have another OS, download the environment from one of the links below and replace:
 
 ####Version 1: One (1) Agent
+
  - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Linux.zip)
  - Max OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher.app.zip)
  - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86.zip)
  - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/one_agent/Reacher_Windows_x86_64.zip) 
  
 ####Version 2: Twenty (20) Agents
+
  - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip)
  - Max OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher.app.zip)
  - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86.zip)
  - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86_64.zip) 
 
 ### Run
-Train: `python robot_arm.py train`
+Train: `python robot_arm_ddpg.py train`
 
-Evaluate: `python robot_arm.py test <checkpoint>`
+Evaluate: `python robot_arm_ddpg.py test <checkpoint>`
 
 ## Results
 
-TODO: Add results
- 
+By using [DDPG algorithm](https://arxiv.org/pdf/1509.02971.pdf) the agent was able to solve the environment after about 40 episodes! See the video below.
+
+[![Agent demonstration](https://img.youtube.com/vi/TMJa-zBxGCI/0.jpg)](https://youtu.be/TMJa-zBxGCI)
+![Score](res/ddpg_128x256/score.png)
+
  ## Additional info
  
  See report for additional information.
+ 
+ ## TODO
+ 
+ PPO algorithm is not yet working. Should be fixed. 
  
