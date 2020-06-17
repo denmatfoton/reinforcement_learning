@@ -49,7 +49,7 @@ def save_hyper_params(f, agent, eps_start, eps_end, eps_decay):
     f.flush()
 
 
-def dqn(file_name, n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_decay=0.97):
+def dqn(res_path, n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps_decay=0.97, print_every=10):
     """Deep Q-Learning.
 
     Params
@@ -60,13 +60,15 @@ def dqn(file_name, n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps
         eps_end (float): minimum value of epsilon
         eps_decay (float): multiplicative factor (per episode) for decreasing epsilon
     """
-    f = open(file_name, "w")
+    f = open(res_path + "train_history.txt", "w")
+    plt_f = open(res_path + "plt_data.txt", "w")
     save_hyper_params(f, agent, eps_start, eps_end, eps_decay)
     t0 = time.perf_counter()
     scores = []  # list containing scores from each episode
     window_size = 100
     scores_window = deque(maxlen=window_size)  # last 100 scores
     eps = eps_start  # initialize epsilon
+
     for i_episode in range(1, n_episodes + 1):
         env_info = env.reset(train_mode=True)[brain_name]  # reset the environment
         state = env_info.vector_observations[0]  # get the current state
@@ -84,21 +86,31 @@ def dqn(file_name, n_episodes=2000, max_t=1000, eps_start=1.0, eps_end=0.01, eps
                 break
         scores_window.append(score)  # save most recent score
         scores.append(score)  # save most recent score
+        average_score = np.mean(scores_window)
         eps = max(eps_end, eps_decay * eps)  # decrease epsilon
-        print('\rEpisode {}\tAverage Score: {:.2f}\tEpsilon: {:.3f}'.format(i_episode, np.mean(scores_window), eps), end="")
+
         t_elapsed = int(time.perf_counter() - t0)
         time_elapsed = "{}:{:02}".format(t_elapsed // 60, t_elapsed % 60)
-        if i_episode % 100 == 0:
-            msg = '\rEpisode {}\tAverage Score: {:.2f}\tTime elapsed: {}'.format(i_episode, np.mean(scores_window), time_elapsed)
+        print('\rEpisode {}\tAverage Score: {:.2f}\tLast Score: {:.2f}\tTime elapsed: {}'.
+              format(i_episode, average_score, score, time_elapsed), end="")
+        plt_f.write('{} '.format(score))
+        plt_f.flush()
+
+        if i_episode % print_every == 0:
+            msg = '\rEpisode {}.\tAverage Score: {:.2f}.\tTime elapsed: {}.'. \
+                format(i_episode, np.mean(scores_window), time_elapsed)
             print(msg)
             f.write(msg)
+            f.flush()
+            torch.save(agent.qnetwork_local.state_dict(), res_path + "checkpoint.pth")
         if np.mean(scores_window) >= 13.0:
-            msg = '\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}\tTime elapsed: {}s'.format(i_episode - window_size,
-                                                                                         np.mean(scores_window), time_elapsed)
+            msg = '\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}.\tTime elapsed: {}'. \
+                format(i_episode - window_size, average_score, time_elapsed)
             print(msg)
             f.write(msg)
             break
     f.close()
+    plt_f.close()
     return scores
 
 
@@ -130,8 +142,7 @@ else:
         except:
             training_num += 1
 
-    train_history_file_name = res_path + "train_history.txt"
-    scores = dqn(train_history_file_name)
+    scores = dqn(res_path)
 
     torch.save(agent.qnetwork_local.state_dict(), res_path + "checkpoint.pth")
 
