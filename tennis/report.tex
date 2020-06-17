@@ -71,7 +71,7 @@ As optimizing method for both networks I used Adam with learning rate \(\alpha\)
 
 \subsubsection*{Experience replay}
 The input for training did not come directly from episodes. Instead I used experience replay technique (see \href{https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf}{Human-level control through deep reinforcement learning}).
-Also I have implemented \href{https://arxiv.org/pdf/1511.05952.pdf}{prioritized experience replay}. But I did not notice improvement in training while using it instead of simple replay.
+Also I implemented \href{https://arxiv.org/pdf/1511.05952.pdf}{prioritized experience replay}. But I did not notice any improvement in training while using it instead of simple replay.
 
 \subsubsection*{Exploratory noise}
 In order to make the agent explore the environment DDPG algorithm adds noise in it actions during training. I used \href{https://en.wikipedia.org/wiki/Ornstein-Uhlenbeck_process}{Ornstein–Uhlenbeck process} for this purpose.
